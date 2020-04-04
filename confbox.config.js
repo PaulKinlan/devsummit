@@ -2,15 +2,15 @@ module.exports = {
   /**
    * Origin of the conference, for creating absolute URLs.
    */
-  origin: 'https://developer.chrome.com',
+  origin: 'https://paulkinlan-devsummit.glitch.me',
   /**
    * Path of the site. / if it's top-level.
    */
-  path: '/devsummit/',
+  path: '/',
   /**
    * Name of the conference.
    */
-  conferenceName: 'Chrome Dev Summit 2019',
+  conferenceName: 'Clone Con',
   teaser:
     "Join the Chrome team for our two-day summit to learn about the latest techniques for building for the modern Web, get an early insight into what we're working on, and to share your thoughts on how we can move the platform forward, together.",
   /**
