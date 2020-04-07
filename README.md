@@ -9,6 +9,153 @@ The `src` folder uses [11ty](https://www.11ty.io).
 
 `/confbox.config.js` allows you to configure the start, end, and timezone of the conference.
 
+``` JavaScript
+module.exports = {
+  /**
+   * Origin of the conference, for creating absolute URLs.
+   */
+  origin: 'https://paulkinlan-devsummit.glitch.me',
+  /**
+   * Path of the site. / if it's top-level.
+   */
+  path: '/',
+  /**
+   * Name of the conference.
+   */
+  conferenceName: 'Clone Con',
+  teaser:
+    "Join the Chrome team for our two-day summit to learn about the latest techniques for building for the modern Web, get an early insight into what we're working on, and to share your thoughts on how we can move the platform forward, together.",
+  /**
+   * Data of the conference venue.
+   */
+  venue: {
+    name: 'Yerba Buena Center for the Arts',
+    city: 'San Francisco',
+    region: 'CA',
+    country: 'US',
+    postalCode: '94103',
+    streetAddress: '701 Mission St',
+    mapsLink: 'https://goo.gl/maps/TBiTuFitnqe1wxPW7',
+  },
+  /**
+   * Conference Twitter account
+   */
+  twitter: '@ChromiumDev',
+  /**
+   * Timezone of the conference, in the form [+-]HHMM.
+   * Examples: -0700, +0100, +0530
+   */
+  timezone: '-0800',
+  /**
+   * Start of conference in the above timezone, in the format: YYYY/MM/DD HH:mm.
+   */
+  start: '2019/11/11 09:00',
+  /**
+   * Start of conference in the above timezone, in the format: YYYY/MM/DD HH:mm.
+   */
+  end: '2019/11/12 17:00',
+  /**
+   * Additional schedule items. These are merged with the content in /sessions/.
+   */
+  extraSchedule: [
+    // Day 1
+    {
+      title: 'Break & livestream exclusive lightning talks',
+      start: '2019/11/11 11:35',
+      end: '2019/11/11 12:15',
+      icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
+    },
+    {
+      title: 'Lunch & livestream exclusive lightning talks',
+      start: '2019/11/11 13:25',
+      end: '2019/11/11 14:35',
+      icon: '/schedule/assets/food.svg',
+      livestreamed: true,
+    },
+    {
+      title: 'Break & livestream exclusive lightning talks',
+      start: '2019/11/11 16:05',
+      end: '2019/11/11 16:40',
+      icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
+    },
+    // Day 2
+    {
+      title: 'Break & livestream exclusive lightning talks',
+      start: '2019/11/12 11:45',
+      end: '2019/11/12 12:15',
+      icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
+    },
+    {
+      title: 'Lunch & livestream exclusive lightning talks',
+      start: '2019/11/12 13:25',
+      end: '2019/11/12 14:35',
+      icon: '/schedule/assets/food.svg',
+      livestreamed: true,
+    },
+    {
+      title: 'Break & livestream exclusive lightning talks',
+      start: '2019/11/12 16:05',
+      end: '2019/11/12 16:35',
+      icon: '/schedule/assets/coffee.svg',
+      livestreamed: true,
+    }
+  ],
+};
+
+```
+
+# Schedule
+
+The schedule is automatically generated from the meta-data in the each of the talks.
+
+Sessions are stored in the `src/sessions/` folder.
+
+Speakers are stored in the `src/speakers` folder.
+
+## Sessions
+
+To create a session, create a markdown file in the `src/sessions` folder (i.e, `keynote.md`)
+
+Then add some YAML front matter that describes the session. For example:
+
+```YAML
+---
+layout: layouts/session/index.njk
+title: HTML isn't done!
+topics:
+  - Features
+speakers:
+  - nicole-sullivan
+  - greg-whitworth
+start: 2019/11/12 10:35
+end: 2019/11/12 11:10
+description: The web platform is now ready to pave those cow paths and extend HTML. And we need your help with these brand new shiny components…
+youtubeId: ZFvPLrKZywA
+---
+```
+
+* `start` and `end` will ensure that the session gets added to the schedule. The dates need to be formatted as follows `YYYY/MM/DD HH:mm`
+* `speakers` is an ID to the speaker so that their profile can be rendered.
+* `youtubeId` is only needed when the session has happened and there is a recording available.
+
+## Speakers
+
+In this current setup, speakers don't have their own pages, but we need to define their metadata so that we can show the speakers against any given session.
+
+Speakers can be defined in the `src/speakers/` folder. The filename is formatted along the following guidelines `[firstname-familyname].md`, with the same format being used as the speaker ID in the session information.
+
+```YAML
+---
+name: Adam Argyle
+title: Google
+avatar: /assets/speakers/adam-argyle.jpg
+link: https://twitter.com/argyleink
+---
+```
+
 # Data
 
 All templates have access to the following:
@@ -63,7 +210,7 @@ In templates and CSS, references assets via `confboxAsset('/path/to/asset.jpg')`
 
 ```css
 .whatever {
-  background: url('confboxAsset(asset.jpg)');
+  background: url("confboxAsset(asset.jpg)");
 }
 ```
 
