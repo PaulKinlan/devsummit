@@ -1,0 +1,43 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "**/*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      },
+      {
+        "source": "**/*-+([0-9a-f]).*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.ics",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/calendar"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**/*.js",
+        "destination": "/devsummit/nuke-sw.js"
+      }
+    ],
+    "redirects": [
+    ]
+  }
+}
