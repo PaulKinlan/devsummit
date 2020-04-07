@@ -6,7 +6,7 @@
     "start": "npm run serve",
     "build": "npm run clean && rollup -c && del .build-tmp",
     "clean": "del build .build-tmp",
-    "serve": "npm run build && superstatic build --port 3000"
+    "serve": "npm run build && superstatic --port 3000"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.9.0",
@@ -14,7 +14,6 @@
     "date-and-time": "^0.10.0",
     "del-cli": "^3.0.0",
     "escape-string-regexp": "^2.0.0",
-    "find-free-port": "^2.0.0",
     "glob": "^7.1.5",
     "html-minifier": "^4.0.0",
     "mkdirp": "^0.5.1",
@@ -31,8 +30,12 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
     "superstatic": "^6.0.4",
-    "express": "^4.17.1",
     "nunjucks": "^3.2.0"
   },
-  "engines": { "node": "12.x" }
+  "engines": {
+    "node": "12.x"
+  },
+  "dependencies": {
+    "firebase-tools": "^5.1.1"
+  }
 }

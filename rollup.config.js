@@ -8,7 +8,6 @@ import htmlCSSPlugin from './lib/html-css-plugin.js';
 import postCSSBuild from './lib/postcss-build.js';
 import eleventyPlugin from './lib/11ty-plugin.js';
 import globInputPlugin from './lib/glob-input-plugin';
-import httpServer from './lib/http-server';
 import buildStartSequencePlugin from './lib/build-start-sequence-plugin';
 import classnamePlugin from './lib/classname-plugin';
 import assetPlugin from './lib/asset-plugin';
@@ -20,9 +19,6 @@ const confboxConfig = require('./confbox.config.js');
 
 export default async function({ watch }) {
   await Promise.all([postCSSBuild('src/**/*.css', '.build-tmp', { watch })]);
-  if (watch) {
-    httpServer();
-  }
 
   return {
     input: {
